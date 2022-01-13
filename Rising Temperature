@@ -1,0 +1,16 @@
+#Given a Weather table, 
+#write a SQL query to find all dates' Ids with higher temperature
+#compared to its previous (yesterday's) dates.
+
+---
+
+#I think this may be a good use of CTE's
+#Hmm perhaps not
+#There has to be a way to compare two things
+#But how to do it in one table?
+#I don't like how weather is used twice here.
+
+SELECT DISTINCT a.Id
+FROM Weather a, Weather b
+WHERE a.Temperature > b.Temperature
+AND DATEDIFF(a.Recorddate, b.Recorddate) = 1
