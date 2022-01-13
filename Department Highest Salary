@@ -1,0 +1,35 @@
+#The Employee table holds all employees. 
+#Every employee has an Id, a salary, and there is also a column for the department Id.
+
+#The Department table holds all departments of the company.
+
+#Write a SQL query to find employees who have the highest salary in each of the departments. 
+#For the above tables, your SQL query should return the following rows (order of rows does not matter).
++------------+----------+--------+
+| Department | Employee | Salary |
++------------+----------+--------+
+| IT         | Max      | 90000  |
+| IT         | Jim      | 90000  |
+| Sales      | Henry    | 80000  |
++------------+----------+--------+
+
+----
+
+
+#OKay, so it's going to be a join of some kind. 
+# I am going to need everything but I will be explict in writing it
+#AFter that we are going to need a join statement
+#Finally getting the max salary, but this isn't as easy as just finding the total max salaries, it's each department.
+#So selecting mutliple values could be a CTE
+
+SELECT E.Department, E.ID, E.Salary, 
+FROM Employee INNER JOIN Department
+ON Employee.EmployeeId  as E = Department.EmployeeId as D
+WHERE (DepartmentId , Salary) 
+    IN
+    (   SELECT
+            DepartmentId, MAX(Salary)
+        FROM
+            Employee
+        GROUP BY DepartmentId
+ )
