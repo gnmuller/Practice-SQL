@@ -1,0 +1,20 @@
+#Write a SQL query to get the second highest salary from the Employee table. 
+#For example, given the Employee table below, the query should return 200 as the second highest salary. 
+#If there is no second highest salary, then the query should return null.
+
+----
+
+#OKay first instict is to just write a select *
+#Next you want to find the salaries in reverse order, so that's desc
+#Next I just want the second highest, so using the limit function
+##I can also use the offset function by constrating the table to a limit
+#Seems like to get around the null part I can wrap the whole thing in a ifNull Function
+
+SELECT
+IFNULL(
+  (
+  SELECT *
+  FROM Employee
+  ORDER BY salary DESC
+  Limit 1,1
+  ), NULL) AS SECONDHIGHEST SALARY
