@@ -1,0 +1,12 @@
+#Write a SQL query to find all duplicate emails in a table named Person.
+
+---
+
+#Okay so the first insitict is there a distinct, so a not statement should work.
+#Doesn't seem like that works, another solution is to count, and anything more then one
+#Can't underestimate that Group By Statement, other wise counting may be hard.
+
+SELECT Email 
+FROM PERSON
+GROUP BY Email
+HAVING count(Email) >1
